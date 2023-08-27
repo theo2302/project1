@@ -23,49 +23,48 @@ The project involves data visualization, exploratory analysis, and clustering an
 """)
 
 # Display the plots and analysis
-with st.expander("Visualizations"):
-    # Distribution Plot
-    st.subheader("Distribution Plot")
-    sns.distplot(customers['Annual Income (k$)'])
-    plt.xlabel('Annual Income (k$)')
-    plt.ylabel('Density')
-    plt.title('Distribution of Annual Income')
-    st.pyplot()
+# Distribution Plot
+st.subheader("Distribution Plot")
+sns.distplot(customers['Annual Income (k$)'])
+plt.xlabel('Annual Income (k$)')
+plt.ylabel('Density')
+plt.title('Distribution of Annual Income')
+st.pyplot()
 
     # Histograms
-    st.subheader("Histograms")
-    columns = ['Age', 'Annual Income (k$)', 'Spending Score (1-100)']
-    for i in columns:
-        sns.set_style("darkgrid")
-        plt.figure()
-        sns.histplot(customers[i], kde=True, shrink=True, bins=20, color='blue', label='Histogram')
-        plt.xlabel(i)
-        plt.ylabel('Density')
-        plt.title(f'Distribution of {i}')
-        plt.legend()
-        st.pyplot(plt)
+st.subheader("Histograms")
+columns = ['Age', 'Annual Income (k$)', 'Spending Score (1-100)']
+for i in columns:
+    sns.set_style("darkgrid")
+    plt.figure()
+    sns.histplot(customers[i], kde=True, shrink=True, bins=20, color='blue', label='Histogram')
+    plt.xlabel(i)
+    plt.ylabel('Density')
+    plt.title(f'Distribution of {i}')
+    plt.legend()
+    st.pyplot(plt)
 
     # KDE Plots
-    st.subheader("KDE Plots")
-    for i in columns:
-        sns.set_style("darkgrid")
-        plt.figure()
-        sns.kdeplot(data=customers, x=i, shade=True, hue='Gender')
-        plt.xlabel(i)
-        plt.ylabel('Density')
-        plt.title(f'Distribution of {i}')
-        st.pyplot(plt)
+st.subheader("KDE Plots")
+for i in columns:
+    sns.set_style("darkgrid")
+    plt.figure()
+    sns.kdeplot(data=customers, x=i, shade=True, hue='Gender')
+    plt.xlabel(i)
+    plt.ylabel('Density')
+    plt.title(f'Distribution of {i}')
+    st.pyplot(plt)
 
     # Pairplot
-    st.subheader("Pairplot")
-    plot = sns.pairplot(data=customers, hue='Gender', markers=['o', 's'])
-    st.pyplot(plot)
+st.subheader("Pairplot")
+plot = sns.pairplot(data=customers, hue='Gender', markers=['o', 's'])
+st.pyplot(plot)
 
     # Heatmap
-    st.subheader("Correlation Heatmap")
-    plt.figure()
-    sns.heatmap(customers.corr(numeric_only=True), annot=True, linewidth=.5, cmap='coolwarm')
-    st.pyplot(plt)
+st.subheader("Correlation Heatmap")
+plt.figure()
+sns.heatmap(customers.corr(numeric_only=True), annot=True, linewidth=.5, cmap='coolwarm')
+st.pyplot(plt)
 
 # Clustering Analysis
 st.subheader("Clustering Analysis")
