@@ -96,8 +96,8 @@ customers['income_cluster'] = knn.labels_
 st.write(f'Inertia: {knn.inertia_}')
 st.write(f'Clusters:\n{customers["income_cluster"].value_counts()}')
 
-# Clusters Summary
-st.write("Clusters Summary:")
+# Income Clusters Summary
+st.write("Income Clusters Summary:")
 st.write(customers.groupby('income_cluster')[['Age', 'Annual Income (k$)', 'Spending Score (1-100)']].mean())
 
 # Spending and Income Clustering
@@ -121,6 +121,10 @@ knn2 = KMeans(n_clusters=5, random_state=42)
 knn2.fit(customers[['Annual Income (k$)', 'Spending Score (1-100)']])
 customers['spending_income_clust'] = knn2.labels_
 st.write(f'Inertia = {knn2.inertia_}')
+
+# Income & Sepending score Clusters Summary
+st.write("Clusters Summary:")
+st.write(customers.groupby('spending_income_clust')[['Age', 'Annual Income (k$)', 'Spending Score (1-100)']].mean())
 
 centers = pd.DataFrame(knn2.cluster_centers_, columns=['x', 'center'])
 plt.figure(figsize=(10,8))
